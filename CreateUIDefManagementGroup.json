@@ -1,0 +1,61 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/0.1.2-preview/CreateUIDefinition.MultiVm.json#",
+    "handler": "Microsoft.Azure.CreateUIDef",
+    "version": "0.1.2-preview",
+    "parameters": {
+        "basics": [
+            {
+                "name": "location",
+                "type": "Microsoft.Common.TextBox",
+                "label": "Location",
+                "defaultValue": "global",
+                "toolTip": "Resources location",
+                "visible": false
+            }
+        ],
+        "steps": [
+            {
+                "name": "appRegisteration",
+                "label": "App Registration",
+                "elements": [
+                    {
+                        "name": "infoBox2",
+                        "type": "Microsoft.Common.InfoBox",
+                        "visible": true,
+                        "options": {
+                          "icon": "Info",
+                          "text": "In this section you will create an app registration or select an existing one for Sumo Logic to authenticate to your Azure resources. A new tab will open when you click 'Make/Change selection' where you can create or select an existing app. Create a new Client Secret in the app registration page and copy the value. Return to this template page by clicking the Close (X) button on the top-right corner after making the selection."
+                        }
+                    },{
+                        "name": "ServicePrincipal",
+                        "type": "Microsoft.Common.ServicePrincipalSelector",
+                        "label": {
+                            "servicePrincipalId": "Service Principal Id",
+                            "password": "Client secret",
+                            "sectionHeader": "Service Principal"
+                        },
+                        "toolTip": {
+                            "servicePrincipalId": "Service Principal Id"
+                        },
+                        "defaultValue": {
+                            "principalId": "<default guid>",
+                            "name": "(New) default App Id"
+                        },
+                        "constraints": {
+                            "required": true,
+                            "validationMessage": "Must be a valid client secret"
+                        },
+                        "options": {
+                            "hideCertificate": true
+                        },
+                        "visible": true
+                    }
+                ]
+            }
+        ],
+        "outputs": {
+            "location": "[location()]",
+            "servicePrincipalObjectId": "[first(steps('appRegisteration').ServicePrincipal.objectId)]"
+        }
+    }
+}
