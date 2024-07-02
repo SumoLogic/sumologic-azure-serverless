@@ -61,14 +61,10 @@
                             }
                         }
                     ],
-                    "outputs": {
-
-                    }
+                    "outputs": {}
                 }
             }
         }
     ],
-    "outputs":{
-        
-    }
+    "outputs": {}
 }

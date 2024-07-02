@@ -5,6 +5,14 @@
     "parameters": {
         "basics": [
             {
+                "name": "infoBox1",
+                "type": "Microsoft.Common.InfoBox",
+                "visible": true,
+                "options": {
+                    "icon": "Info",
+                    "text": "The Management Group selected above will determine which subscriptions Sumo Logic will collect metrics from. Once deployed, Sumo Logic will monitor all Subscriptions under this Management Group and automatically collect from any new Subscriptions added to it (auto-discovery)."
+                }
+            },{
                 "name": "location",
                 "type": "Microsoft.Common.TextBox",
                 "label": "Location",
